@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "CodeModel v2 Index",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "version": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "major": {
+          "type": "integer"
+        },
+        "minor": {
+          "type": "integer"
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "required": [
+        "source",
+        "build"
+      ],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "build": {
+          "type": "string"
+        }
+      }
+    },
+    "configurations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/configuration"
+      }
+    }
+  },
+  "definitions": {
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "directories": {
+          "type": "array",
+          "items": {
+            "ref": "#/definitions/directory"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/project"
+          }
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/target"
+          }
+        }
+      }
+    },
+    "directory": {
+      "type": "object",
+      "required": [
+        "source",
+        "build",
+        "projectIndex",
+        "jsonFile"
+      ],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "build": {
+          "type": "string"
+        },
+        "parentIndex": {
+          "type": "string"
+        },
+        "childIndexes": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "projectIndex": {
+          "type": "integer"
+        },
+        "minimumCMakeVersion": {
+          "type": "object",
+          "required": [
+            "string"
+          ],
+          "properties": {
+            "string": {
+              "type": "string"
+            }
+          }
+        },
+        "hasInstallRule": {
+          "type": "boolean"
+        },
+        "jsonFile": {
+          "type": "string"
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "name",
+        "directoryIndexes"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "parentIndex": {
+          "type": "integer"
+        },
+        "childIndexes": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "directoryIndexes": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "targetIndexes": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "name",
+        "directoryIndex",
+        "projectIndex",
+        "jsonFile"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "directoryIndex": {
+          "type": "integer"
+        },
+        "projectIndex": {
+          "type": "integer"
+        },
+        "jsonFile": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

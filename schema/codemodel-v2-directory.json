@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "CodeModel v2 Directory File",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "paths",
+    "installers",
+    "backtraceGraph"
+  ],
+  "properties": {
+    "paths": {
+      "type": "object",
+      "required": [
+        "source",
+        "build"
+      ],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "build": {
+          "type": "string"
+        }
+      }
+    },
+    "installers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$id": "installer",
+        "required": [
+          "component",
+          "type"
+        ],
+        "properties": {
+          "component": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "paths": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "from",
+                    "to"
+                  ],
+                  "properties": {
+                    "from": {
+                      "type": "string"
+                    },
+                    "to": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "file",
+              "directory",
+              "target",
+              "export",
+              "script",
+              "code",
+              "importedRuntimeArtifacts",
+              "runtimeDependencySet",
+              "fileSet"
+            ]
+          },
+          "isExcludeFromAll": {
+            "type": "boolean"
+          },
+          "isForAllComponents": {
+            "type": "boolean"
+          },
+          "isOptional": {
+            "type": "boolean"
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "targetIndex": {
+            "type": "integer"
+          },
+          "targetIsImportLibrary": {
+            "type": "boolean"
+          },
+          "targetInstallNamelink": {
+            "type": "string",
+            "enum": [
+              "skip",
+              "only"
+            ]
+          },
+          "exportName": {
+            "type": "string"
+          },
+          "exportTargets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "index"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "index": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "runtimeDependencySetName": {
+            "type": "string"
+          },
+          "runtimeDependencySetType": {
+            "type": "string",
+            "enum": [
+              "library",
+              "framework"
+            ]
+          },
+          "fileSetName": {
+            "type": "string"
+          },
+          "fileSetType": {
+            "type": "string"
+          },
+          "fileSetDirectories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fileSetTarget": {
+            "type": "object",
+            "required": [
+              "id",
+              "index"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "index": {
+                "type": "integer"
+              }
+            }
+          },
+          "scriptFile": {
+            "type": "string"
+          },
+          "backtrace": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "backtraceGraph": {
+      "$ref": "./codemodel-v2-backtrace-graph.json"
+    }
+  }
+}

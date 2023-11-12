@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Toolchains v1",
+  "required": [
+    "kind",
+    "version",
+    "toolchains"
+  ],
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "version": {
+      "type": "object",
+      "required": [
+        "major",
+        "minor"
+      ],
+      "properties": {
+        "major": {
+          "type": "integer"
+        },
+        "minor": {
+          "type": "integer"
+        }
+      }
+    },
+    "toolchains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "language",
+          "compiler"
+        ],
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "compiler": {
+            "type": "object",
+            "required": [
+              "implicit"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "implicit": {
+                "type": "object",
+                "properties": {
+                  "includeDirectories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "linkDirectories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "linkFrameworkDirectories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "linkLibraries": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "sourceFileExtensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

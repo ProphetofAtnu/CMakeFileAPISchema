@@ -1,0 +1,455 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "CodeModel v2 Target File",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "id",
+    "type",
+    "backtrace",
+    "paths",
+    "sources"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "EXECUTABLE",
+        "STATIC_LIBRARY",
+        "SHARED_LIBRARY",
+        "MODULE_LIBRARY",
+        "OBJECT_LIBRARY",
+        "INTERFACE_LIBRARY",
+        "UTILITY"
+      ]
+    },
+    "backtrace": {
+      "type": "integer"
+    },
+    "folder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "build"
+      ],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "build": {
+          "type": "string"
+        }
+      }
+    },
+    "nameOnDisk": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "isGeneratorProvided": {
+      "type": "boolean"
+    },
+    "install": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prefix",
+        "destinations"
+      ],
+      "properties": {
+        "prefix": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          }
+        },
+        "destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "backtrace": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "language"
+      ],
+      "properties": {
+        "language": {
+          "type": "string"
+        },
+        "commandFragments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "fragment",
+              "role"
+            ],
+            "properties": {
+              "fragment": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "flags",
+                  "libraries",
+                  "libraryPath",
+                  "frameworkPath"
+                ]
+              },
+              "backtrace": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "lto": {
+          "type": "boolean"
+        },
+        "sysroot": {
+          "type": "object",
+          "required": [
+            "path"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "archive": {
+      "type": "object",
+      "properties": {
+        "commandFragments": {
+          "type": "object",
+          "required": [
+            "fragment",
+            "role"
+          ],
+          "properties": {
+            "fragment": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "flags",
+                "libraries",
+                "libraryPath",
+                "frameworkPath"
+              ]
+            }
+          }
+        },
+        "lto": {
+          "type": "boolean"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "$id": "dependency",
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "backtrace": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "fileSets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "visibility",
+          "baseDirectories"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "PRIVATE",
+              "INTERFACE"
+            ]
+          },
+          "baseDirectories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$id": "source",
+        "type": "object",
+        "required": [
+          "path"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "compileGroupIndex": {
+            "type": "integer"
+          },
+          "sourceGroupIndex": {
+            "type": "integer"
+          },
+          "isGenerated": {
+            "type": "boolean"
+          },
+          "fileSetIndex": {
+            "type": "integer"
+          },
+          "backtrace": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "sourceGroups": {
+      "type": "array",
+      "items": {
+        "$id": "sourceGroup",
+        "type": "object",
+        "required": [
+          "name",
+          "sourceIndexes"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sourceIndexes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "compileGroups": {
+      "type": "array",
+      "items": {
+        "$id": "sourceGroup",
+        "type": "object",
+        "required": [
+          "sourceIndexes",
+          "language"
+        ],
+        "properties": {
+          "sourceIndexes": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "language": {
+            "type": "string"
+          },
+          "languageStandard": {
+            "type": "object",
+            "required": [
+              "standard"
+            ],
+            "properties": {
+              "backtraces": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "standard": {
+                "type": "string"
+              }
+            }
+          },
+          "compileCommandFragments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "fragment"
+              ],
+              "properties": {
+                "fragment": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "includes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "path"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "isSystem": {
+                  "type": "boolean"
+                },
+                "backtrace": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "frameworks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "items"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "isSystem": {
+                  "type": "boolean"
+                },
+                "backtrace": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "precompileHeaders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "header"
+              ],
+              "properties": {
+                "header": {
+                  "type": "string"
+                },
+                "backtrace": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "defines": {
+            "type": "array",
+            "items": {
+              "$id": "define",
+              "type": "object",
+              "required": [
+                "define"
+              ],
+              "properties": {
+                "define": {
+                  "type": "string"
+                },
+                "backtrace": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "sysroot": {
+            "type": "object",
+            "required": [
+              "path"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "backtraceGraph": {
+      "$ref": "./codemodel-v2-backtrace-graph.json"
+    }
+  }
+}

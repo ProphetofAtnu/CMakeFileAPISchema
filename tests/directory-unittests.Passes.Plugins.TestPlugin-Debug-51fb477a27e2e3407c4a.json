@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "unittests/Passes/Plugins/TestPlugin",
+		"source" : "unittests/Passes/Plugins/TestPlugin"
+	}
+}

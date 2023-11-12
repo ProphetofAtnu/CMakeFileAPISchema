@@ -1,0 +1,79 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"add_llvm_library",
+			"add_tablegen"
+		],
+		"files" : 
+		[
+			"cmake/modules/AddLLVM.cmake",
+			"utils/TableGen/CMakeLists.txt",
+			"cmake/modules/TableGen.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 3,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 879,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 2,
+				"line" : 202,
+				"parent" : 3
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "LLVMTableGenCommon",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/libLLVMTableGenCommon.a"
+			],
+			"targetId" : "LLVMTableGenCommon::@dca47d54282c16282dfc",
+			"targetIndex" : 266,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "llvm-tblgen",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/llvm-tblgen"
+			],
+			"targetId" : "llvm-tblgen::@dca47d54282c16282dfc",
+			"targetIndex" : 2139,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "utils/TableGen",
+		"source" : "utils/TableGen"
+	}
+}
