@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 
 check-jsonschema --schemafile ./schema/cache-v2.json tests/cache-v2-*.json
